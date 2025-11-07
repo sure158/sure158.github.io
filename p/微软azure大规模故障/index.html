@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="微软 Azure 9 小时全球宕机事件深度解析 一、事件全景：从配置错误到全球瘫痪 2025 年 10 月 29 日 UTC 时间 16:00，微软 Azure Front Door（AFD）内容分发网络率先出现异常，无效配置导致全球大量节点掉线，故障迅速蔓延至整个云生态。根据微软官方时间线： 16:00-17:00：AFD 节点加载失败引发连锁反应，Azure Portal、Microsoft 365 登录系统相继中断； 18:25：故障峰值爆发，Downdetector 监测显示超 1.8 万人报告 Azure 中断，近 2 万人反馈 Office 365 故障； 21:20：全球部署 &ldquo;最后已知良好配置&rdquo;，部分服务开始恢复； 次日 01:00：所有区域服务验证正常，故障持续近 9 小时。 值得关注的是，事故恰逢微软 2026 财年 Q1 财报发布前夕，而财报显示 Azure 云服务收入同比增长 40%，形成尴尬反差。\n">
+<title>微软Azure大规模故障</title>
+
+<link rel='canonical' href='https://sure158.github.io/p/%E5%BE%AE%E8%BD%AFazure%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%85%E9%9A%9C/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="微软Azure大规模故障">
+<meta property='og:description' content="微软 Azure 9 小时全球宕机事件深度解析 一、事件全景：从配置错误到全球瘫痪 2025 年 10 月 29 日 UTC 时间 16:00，微软 Azure Front Door（AFD）内容分发网络率先出现异常，无效配置导致全球大量节点掉线，故障迅速蔓延至整个云生态。根据微软官方时间线： 16:00-17:00：AFD 节点加载失败引发连锁反应，Azure Portal、Microsoft 365 登录系统相继中断； 18:25：故障峰值爆发，Downdetector 监测显示超 1.8 万人报告 Azure 中断，近 2 万人反馈 Office 365 故障； 21:20：全球部署 &ldquo;最后已知良好配置&rdquo;，部分服务开始恢复； 次日 01:00：所有区域服务验证正常，故障持续近 9 小时。 值得关注的是，事故恰逢微软 2026 财年 Q1 财报发布前夕，而财报显示 Azure 云服务收入同比增长 40%，形成尴尬反差。\n">
+<meta property='og:url' content='https://sure158.github.io/p/%E5%BE%AE%E8%BD%AFazure%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%85%E9%9A%9C/'>
+<meta property='og:site_name' content='sure-block'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-11-05T13:18:40&#43;08:00'/><meta property='article:modified_time' content='2025-11-05T13:18:40&#43;08:00'/>
+<meta name="twitter:title" content="微软Azure大规模故障">
+<meta name="twitter:description" content="微软 Azure 9 小时全球宕机事件深度解析 一、事件全景：从配置错误到全球瘫痪 2025 年 10 月 29 日 UTC 时间 16:00，微软 Azure Front Door（AFD）内容分发网络率先出现异常，无效配置导致全球大量节点掉线，故障迅速蔓延至整个云生态。根据微软官方时间线： 16:00-17:00：AFD 节点加载失败引发连锁反应，Azure Portal、Microsoft 365 登录系统相继中断； 18:25：故障峰值爆发，Downdetector 监测显示超 1.8 万人报告 Azure 中断，近 2 万人反馈 Office 365 故障； 21:20：全球部署 &ldquo;最后已知良好配置&rdquo;，部分服务开始恢复； 次日 01:00：所有区域服务验证正常，故障持续近 9 小时。 值得关注的是，事故恰逢微软 2026 财年 Q1 财报发布前夕，而财报显示 Azure 云服务收入同比增长 40%，形成尴尬反差。\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_2ee43e5217ab566c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sure-block</a></h1>
+            <h2 class="site-description">sure-block的个人博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一事件全景从配置错误到全球瘫痪">一、事件全景：从配置错误到全球瘫痪</a>
+      <ol>
+        <li><a href="#2025-年-10-月-29-日-utc-时间-1600微软-azure-front-doorafd内容分发网络率先出现异常无效配置导致全球大量节点掉线故障迅速蔓延至整个云生态根据微软官方时间线">2025 年 10 月 29 日 UTC 时间 16:00，微软 Azure Front Door（AFD）内容分发网络率先出现异常，无效配置导致全球大量节点掉线，故障迅速蔓延至整个云生态。根据微软官方时间线：</a></li>
+      </ol>
+    </li>
+    <li><a href="#二技术根源配置漏洞引发的系统性崩塌">二、技术根源：配置漏洞引发的系统性崩塌</a>
+      <ol>
+        <li><a href="#微软初步-pir事后审查报告揭示三重核心问题">微软初步 PIR（事后审查报告）揭示三重核心问题：</a></li>
+      </ol>
+    </li>
+    <li><a href="#三行业冲击从医疗到零售的连锁困境">三、行业冲击：从医疗到零售的连锁困境</a>
+      <ol>
+        <li><a href="#故障影响覆盖民生关键领域与商业巨头具体表现为">故障影响覆盖民生关键领域与商业巨头，具体表现为：</a></li>
+      </ol>
+    </li>
+    <li><a href="#四深层反思云垄断下的系统性风险">四、深层反思：云垄断下的系统性风险</a>
+      <ol>
+        <li><a href="#此次事件与-10-月-20-日-aws-15-小时宕机形成-双震引发全球对云服务集中化的警惕">此次事件与 10 月 20 日 AWS 15 小时宕机形成 &ldquo;双震&rdquo;，引发全球对云服务集中化的警惕：</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%BE%AE%E8%BD%AFazure%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%95%85%E9%9A%9C/">微软Azure大规模故障</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 05, 2025</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="微软-azure-9-小时全球宕机事件深度解析">微软 Azure 9 小时全球宕机事件深度解析
+</h1><h2 id="一事件全景从配置错误到全球瘫痪">一、事件全景：从配置错误到全球瘫痪
+</h2><h3 id="2025-年-10-月-29-日-utc-时间-1600微软-azure-front-doorafd内容分发网络率先出现异常无效配置导致全球大量节点掉线故障迅速蔓延至整个云生态根据微软官方时间线">2025 年 10 月 29 日 UTC 时间 16:00，微软 Azure Front Door（AFD）内容分发网络率先出现异常，无效配置导致全球大量节点掉线，故障迅速蔓延至整个云生态。根据微软官方时间线：
+</h3><p>16:00-17:00：AFD 节点加载失败引发连锁反应，Azure Portal、Microsoft 365 登录系统相继中断；
+18:25：故障峰值爆发，Downdetector 监测显示超 1.8 万人报告 Azure 中断，近 2 万人反馈 Office 365 故障；
+21:20：全球部署 &ldquo;最后已知良好配置&rdquo;，部分服务开始恢复；
+次日 01:00：所有区域服务验证正常，故障持续近 9 小时。
+值得关注的是，事故恰逢微软 2026 财年 Q1 财报发布前夕，而财报显示 Azure 云服务收入同比增长 40%，形成尴尬反差。</p>
+<h2 id="二技术根源配置漏洞引发的系统性崩塌">二、技术根源：配置漏洞引发的系统性崩塌
+</h2><h3 id="微软初步-pir事后审查报告揭示三重核心问题">微软初步 PIR（事后审查报告）揭示三重核心问题：
+</h3><ol>
+<li>配置变更失控
+租户配置更新中引入无效参数，而本应拦截错误的防护机制因软件缺陷失效，导致异常配置穿透校验层。</li>
+<li>AFD 节点雪崩
+故障节点从全球池掉线后，健康节点流量负载骤增 3 倍，引发二次性能崩溃，甚至波及未直接配置变更的区域。</li>
+<li>耦合性过高
+Azure DNS、身份认证与应用服务深度依赖 AFD 链路，单一组件故障迅速演变为全域服务瘫痪。
+此次事故暴露的不仅是操作失误，更是云架构中 &ldquo;单点故障&rdquo; 的设计隐患。</li>
+</ol>
+<h2 id="三行业冲击从医疗到零售的连锁困境">三、行业冲击：从医疗到零售的连锁困境
+</h2><h3 id="故障影响覆盖民生关键领域与商业巨头具体表现为">故障影响覆盖民生关键领域与商业巨头，具体表现为：
+</h3><ol>
+<li>公共服务停摆
+加拿大魁北克医疗机构 Santé Québec 虚拟护理平台中断，一线病患接入受阻；
+英国希思罗机场官网长时间无法访问。</li>
+<li>交通系统瘫痪
+阿拉斯加航空与夏威夷航空值机系统失效；
+航空公司紧急呼吁旅客提前 2 小时到机场人工办理。</li>
+<li>零售交易中断
+星巴克移动支付、Costco 线上商城出现支付超时；
+克罗格超市库存查询系统宕机。</li>
+<li>消费服务受阻
+Xbox Live 登录失败、Minecraft 服务器离线；
+全球玩家在社交平台发起集体投诉。
+网站性能监测商 Catchpoint 测算，仅零售行业单日损失即达数千万美元，全行业总损失或超百亿美元。</li>
+</ol>
+<h2 id="四深层反思云垄断下的系统性风险">四、深层反思：云垄断下的系统性风险
+</h2><h3 id="此次事件与-10-月-20-日-aws-15-小时宕机形成-双震引发全球对云服务集中化的警惕">此次事件与 10 月 20 日 AWS 15 小时宕机形成 &ldquo;双震&rdquo;，引发全球对云服务集中化的警惕：
+</h3><ol>
+<li>市场集中度危机
+Canalys 数据显示，AWS、Azure 与谷歌云占据全球 65% 市场份额，前两大巨头接连故障暴露 &ldquo;三篮子困境&rdquo;（即依赖少数服务商的风险）。</li>
+<li>监管呼声高涨
+前 FTC 委员罗希特・乔普拉直言，云服务集中化已构成 &ldquo;系统性脆弱性&rdquo;，呼吁建立跨厂商容灾标准。</li>
+<li>企业策略转向
+微软事后冻结所有 AFD 配置变更，并新增三重验证机制；
+更多企业开始加速多云部署（即同时使用多个云服务商的服务）；
+微软自身也透露将开放跨云迁移工具，降低客户的迁移成本。
+正如康奈尔大学教授格法尔科所言：&ldquo;当全球数字基础设施依赖少数厂商，一次键盘失误就可能引发蝴蝶效应。&rdquo;</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 sure-block
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.31.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
