@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="B站视频下载器使用指南 简介 B站视频下载器是一款基于Python开发的桌面应用，能够帮助你轻松下载B站视频并保存到本地。该工具支持批量下载，自动合并音视频流，操作简单易用。\n">
+<title>B站视频下载器使用指南</title>
+
+<link rel='canonical' href='https://sure158.github.io/p/b%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="B站视频下载器使用指南">
+<meta property='og:description' content="B站视频下载器使用指南 简介 B站视频下载器是一款基于Python开发的桌面应用，能够帮助你轻松下载B站视频并保存到本地。该工具支持批量下载，自动合并音视频流，操作简单易用。\n">
+<meta property='og:url' content='https://sure158.github.io/p/b%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/'>
+<meta property='og:site_name' content='sure-block'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-12-28T09:42:55&#43;08:00'/><meta property='article:modified_time' content='2025-12-28T09:42:55&#43;08:00'/>
+<meta name="twitter:title" content="B站视频下载器使用指南">
+<meta name="twitter:description" content="B站视频下载器使用指南 简介 B站视频下载器是一款基于Python开发的桌面应用，能够帮助你轻松下载B站视频并保存到本地。该工具支持批量下载，自动合并音视频流，操作简单易用。\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_2ee43e5217ab566c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sure-block</a></h1>
+            <h2 class="site-description">sure-block的个人博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#准备工作">准备工作</a>
+      <ol>
+        <li><a href="#系统要求">系统要求</a></li>
+      </ol>
+    </li>
+    <li><a href="#安装步骤">安装步骤</a></li>
+    <li><a href="#使用教程">使用教程</a>
+      <ol>
+        <li><a href="#启动程序">启动程序</a></li>
+        <li><a href="#主要功能区域说明">主要功能区域说明</a></li>
+        <li><a href="#下载视频步骤">下载视频步骤</a></li>
+      </ol>
+    </li>
+    <li><a href="#常见问题">常见问题</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#程序文件内容">程序文件内容</a>
+      <ol>
+        <li><a href="#bilibilipy">Bilibili.py</a></li>
+        <li><a href="#安装依赖bat">安装依赖.bat</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/b%E7%AB%99%E8%A7%86%E9%A2%91%E4%B8%8B%E8%BD%BD%E5%99%A8%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">B站视频下载器使用指南</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Dec 28, 2025</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="b站视频下载器使用指南">B站视频下载器使用指南
+</h1><h2 id="简介">简介
+</h2><p>B站视频下载器是一款基于Python开发的桌面应用，能够帮助你轻松下载B站视频并保存到本地。该工具支持批量下载，自动合并音视频流，操作简单易用。</p>
+<h2 id="准备工作">准备工作
+</h2><h3 id="系统要求">系统要求
+</h3><ul>
+<li>Windows 操作系统</li>
+<li>已安装Python 3.x（建议3.7及以上版本）</li>
+<li>确保Python已添加到系统环境变量</li>
+</ul>
+<h2 id="安装步骤">安装步骤
+</h2><ol>
+<li>
+<p><strong>获取程序文件</strong>
+首先需要获取<code>安装依赖.bat</code>和<code>Bilibili.py</code>两个文件，并将它们放在同一个文件夹中</p>
+</li>
+<li>
+<p><strong>安装依赖库</strong></p>
+<ul>
+<li>双击运行<code>安装依赖.bat</code>文件</li>
+<li>脚本会自动：
+<ul>
+<li>配置pip国内镜像源（清华源），加快下载速度</li>
+<li>安装所需的所有依赖库（requests、moviepy、ffmpeg-python等）</li>
+</ul>
+</li>
+<li>等待安装完成，出现&quot;环境配置完成&quot;提示即表示依赖安装成功</li>
+</ul>
+</li>
+</ol>
+<h2 id="使用教程">使用教程
+</h2><h3 id="启动程序">启动程序
+</h3><p>双击<code>Bilibili.py</code>文件，或在命令行中执行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">python Bilibili.py
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>启动后会看到如下界面：</p>
+<h3 id="主要功能区域说明">主要功能区域说明
+</h3><ol>
+<li><strong>视频链接区域</strong>：用于输入B站视频链接，支持批量输入（每行一个链接）</li>
+<li><strong>保存设置区域</strong>：显示视频保存路径，默认路径为&quot;用户目录/B站下载&quot;</li>
+<li><strong>控制按钮区域</strong>：包含&quot;开始下载&quot;和&quot;清空链接&quot;两个按钮</li>
+<li><strong>下载状态区域</strong>：显示下载进度和详细信息，底部有进度条</li>
+</ol>
+<h3 id="下载视频步骤">下载视频步骤
+</h3><ol>
+<li>
+<p><strong>获取B站视频链接</strong>
+打开B站视频页面，复制浏览器地址栏中的链接（支持普通视频链接）</p>
+</li>
+<li>
+<p><strong>输入视频链接</strong></p>
+<ul>
+<li>在视频链接区域的文本框中粘贴视频链接</li>
+<li>如需批量下载，可每行输入一个链接</li>
+</ul>
+</li>
+<li>
+<p><strong>设置保存路径（可选）</strong></p>
+<ul>
+<li>默认保存路径为&quot;用户目录/B站下载&quot;</li>
+<li>如需更改，点击&quot;浏览&quot;按钮选择新的保存文件夹</li>
+</ul>
+</li>
+<li>
+<p><strong>开始下载</strong></p>
+<ul>
+<li>点击&quot;开始下载&quot;按钮</li>
+<li>下载状态区域会显示实时进度</li>
+<li>下载完成后，会提示视频保存的具体路径</li>
+</ul>
+</li>
+<li>
+<p><strong>查看结果</strong>
+下载完成后，可直接到设置的保存路径中查看下载好的视频文件</p>
+</li>
+</ol>
+<h2 id="常见问题">常见问题
+</h2><ol>
+<li>
+<p><strong>提示&quot;pip不是内部或外部命令&quot;</strong></p>
+<ul>
+<li>解决方法：检查Python是否已正确安装并添加到系统环境变量</li>
+</ul>
+</li>
+<li>
+<p><strong>下载失败或提示&quot;未找到可用的音视频流&quot;</strong></p>
+<ul>
+<li>可能是视频需要登录或有版权限制，目前工具不支持下载受版权保护的视频</li>
+</ul>
+</li>
+<li>
+<p><strong>合并音视频失败</strong></p>
+<ul>
+<li>确保<code>安装依赖.bat</code>已成功执行</li>
+<li>尝试重新运行依赖安装脚本</li>
+</ul>
+</li>
+<li>
+<p><strong>界面中文显示乱码</strong></p>
+<ul>
+<li>程序已默认配置中文字体，如仍有问题请检查系统字体设置</li>
+</ul>
+</li>
+</ol>
+<h2 id="注意事项">注意事项
+</h2><ul>
+<li>请遵守B站用户协议和版权规定，下载的视频仅用于个人学习和交流</li>
+<li>批量下载时建议不要同时下载过多视频，以免给服务器造成压力</li>
+<li>部分高清视频可能需要较长下载时间，请耐心等待</li>
+</ul>
+<p>希望本指南能帮助你顺利使用B站视频下载器，如有其他问题请检查程序运行日志获取更多信息。</p>
+<hr>
+<h2 id="程序文件内容">程序文件内容
+</h2><h3 id="bilibilipy">Bilibili.py
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span><span class="lnt">125
+</span><span class="lnt">126
+</span><span class="lnt">127
+</span><span class="lnt">128
+</span><span class="lnt">129
+</span><span class="lnt">130
+</span><span class="lnt">131
+</span><span class="lnt">132
+</span><span class="lnt">133
+</span><span class="lnt">134
+</span><span class="lnt">135
+</span><span class="lnt">136
+</span><span class="lnt">137
+</span><span class="lnt">138
+</span><span class="lnt">139
+</span><span class="lnt">140
+</span><span class="lnt">141
+</span><span class="lnt">142
+</span><span class="lnt">143
+</span><span class="lnt">144
+</span><span class="lnt">145
+</span><span class="lnt">146
+</span><span class="lnt">147
+</span><span class="lnt">148
+</span><span class="lnt">149
+</span><span class="lnt">150
+</span><span class="lnt">151
+</span><span class="lnt">152
+</span><span class="lnt">153
+</span><span class="lnt">154
+</span><span class="lnt">155
+</span><span class="lnt">156
+</span><span class="lnt">157
+</span><span class="lnt">158
+</span><span class="lnt">159
+</span><span class="lnt">160
+</span><span class="lnt">161
+</span><span class="lnt">162
+</span><span class="lnt">163
+</span><span class="lnt">164
+</span><span class="lnt">165
+</span><span class="lnt">166
+</span><span class="lnt">167
+</span><span class="lnt">168
+</span><span class="lnt">169
+</span><span class="lnt">170
+</span><span class="lnt">171
+</span><span class="lnt">172
+</span><span class="lnt">173
+</span><span class="lnt">174
+</span><span class="lnt">175
+</span><span class="lnt">176
+</span><span class="lnt">177
+</span><span class="lnt">178
+</span><span class="lnt">179
+</span><span class="lnt">180
+</span><span class="lnt">181
+</span><span class="lnt">182
+</span><span class="lnt">183
+</span><span class="lnt">184
+</span><span class="lnt">185
+</span><span class="lnt">186
+</span><span class="lnt">187
+</span><span class="lnt">188
+</span><span class="lnt">189
+</span><span class="lnt">190
+</span><span class="lnt">191
+</span><span class="lnt">192
+</span><span class="lnt">193
+</span><span class="lnt">194
+</span><span class="lnt">195
+</span><span class="lnt">196
+</span><span class="lnt">197
+</span><span class="lnt">198
+</span><span class="lnt">199
+</span><span class="lnt">200
+</span><span class="lnt">201
+</span><span class="lnt">202
+</span><span class="lnt">203
+</span><span class="lnt">204
+</span><span class="lnt">205
+</span><span class="lnt">206
+</span><span class="lnt">207
+</span><span class="lnt">208
+</span><span class="lnt">209
+</span><span class="lnt">210
+</span><span class="lnt">211
+</span><span class="lnt">212
+</span><span class="lnt">213
+</span><span class="lnt">214
+</span><span class="lnt">215
+</span><span class="lnt">216
+</span><span class="lnt">217
+</span><span class="lnt">218
+</span><span class="lnt">219
+</span><span class="lnt">220
+</span><span class="lnt">221
+</span><span class="lnt">222
+</span><span class="lnt">223
+</span><span class="lnt">224
+</span><span class="lnt">225
+</span><span class="lnt">226
+</span><span class="lnt">227
+</span><span class="lnt">228
+</span><span class="lnt">229
+</span><span class="lnt">230
+</span><span class="lnt">231
+</span><span class="lnt">232
+</span><span class="lnt">233
+</span><span class="lnt">234
+</span><span class="lnt">235
+</span><span class="lnt">236
+</span><span class="lnt">237
+</span><span class="lnt">238
+</span><span class="lnt">239
+</span><span class="lnt">240
+</span><span class="lnt">241
+</span><span class="lnt">242
+</span><span class="lnt">243
+</span><span class="lnt">244
+</span><span class="lnt">245
+</span><span class="lnt">246
+</span><span class="lnt">247
+</span><span class="lnt">248
+</span><span class="lnt">249
+</span><span class="lnt">250
+</span><span class="lnt">251
+</span><span class="lnt">252
+</span><span class="lnt">253
+</span><span class="lnt">254
+</span><span class="lnt">255
+</span><span class="lnt">256
+</span><span class="lnt">257
+</span><span class="lnt">258
+</span><span class="lnt">259
+</span><span class="lnt">260
+</span><span class="lnt">261
+</span><span class="lnt">262
+</span><span class="lnt">263
+</span><span class="lnt">264
+</span><span class="lnt">265
+</span><span class="lnt">266
+</span><span class="lnt">267
+</span><span class="lnt">268
+</span><span class="lnt">269
+</span><span class="lnt">270
+</span><span class="lnt">271
+</span><span class="lnt">272
+</span><span class="lnt">273
+</span><span class="lnt">274
+</span><span class="lnt">275
+</span><span class="lnt">276
+</span><span class="lnt">277
+</span><span class="lnt">278
+</span><span class="lnt">279
+</span><span class="lnt">280
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="n">ttk</span><span class="p">,</span> <span class="n">filedialog</span><span class="p">,</span> <span class="n">messagebox</span><span class="p">,</span> <span class="n">scrolledtext</span><span class="p">,</span> <span class="n">font</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">threading</span>  <span class="c1"># 用于多线程处理，避免界面卡顿</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># 用于文件路径处理和目录操作</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>  <span class="c1"># 用于正则表达式匹配，提取BV号</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>  <span class="c1"># 用于解析API返回的JSON数据</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>  <span class="c1"># 用于发送HTTP请求，获取视频信息和下载链接</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>  <span class="c1"># 用于解析URL，提取参数</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入moviepy库，用于音视频合并</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">moviepy.editor</span> <span class="kn">import</span> <span class="n">VideoFileClip</span><span class="p">,</span> <span class="n">AudioFileClip</span><span class="p">,</span> <span class="n">CompositeAudioClip</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">BiliVideoDownloader</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;&#34;&#34;B站视频下载器类，实现视频下载的核心功能和界面交互&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;初始化方法，设置界面和初始参数&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>  <span class="c1"># 主窗口对象</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&#34;B站视频下载器&#34;</span><span class="p">)</span>  <span class="c1"># 设置窗口标题</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&#34;750x550&#34;</span><span class="p">)</span>  <span class="c1"># 设置窗口初始大小</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 设置中文字体支持，确保界面中文正常显示</span>
+</span></span><span class="line"><span class="cl">        <span class="n">default_font</span> <span class="o">=</span> <span class="n">font</span><span class="o">.</span><span class="n">nametofont</span><span class="p">(</span><span class="s2">&#34;TkDefaultFont&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">default_font</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">family</span><span class="o">=</span><span class="s2">&#34;Microsoft YaHei&#34;</span><span class="p">)</span>  <span class="c1"># 使用微软雅黑字体</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 请求头配置，模拟浏览器行为，避免被服务器拒绝</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;User-Agent&#34;</span><span class="p">:</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="s2">&#34;Referer&#34;</span><span class="p">:</span> <span class="s2">&#34;https://www.bilibili.com/&#34;</span>  <span class="c1"># Referer头，模拟从B站页面跳转</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 初始化界面布局</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">setup_ui</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">setup_ui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;设置用户界面布局&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 链接输入区域</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_url</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;视频链接&#34;</span><span class="p">)</span>  <span class="c1"># 创建带标题的框架</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_url</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 放置框架，横向填充</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">frame_url</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;输入链接（可批量，每行一个）:&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">anchor</span><span class="o">=</span><span class="s2">&#34;w&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 创建带滚动条的文本框，用于输入视频链接</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">url_text</span> <span class="o">=</span> <span class="n">scrolledtext</span><span class="o">.</span><span class="n">ScrolledText</span><span class="p">(</span><span class="n">frame_url</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">WORD</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">url_text</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 保存路径区域</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_path</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;保存设置&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_path</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 默认保存路径为用户目录下的&#34;B站下载&#34;文件夹</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">save_path</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">StringVar</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&#34;~&#34;</span><span class="p">),</span> <span class="s2">&#34;B站下载&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Label</span><span class="p">(</span><span class="n">frame_path</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;保存路径:&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s2">&#34;w&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">frame_path</span><span class="p">,</span> <span class="n">textvariable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">save_path</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_path</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;浏览&#34;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">choose_save_path</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 控制按钮区域</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_btn</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_btn</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_btn</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;开始下载&#34;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start_download</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ttk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">frame_btn</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;清空链接&#34;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_text</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s2">&#34;left&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 状态显示区域</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_status</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">LabelFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">&#34;下载状态&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">frame_status</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;both&#34;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 填充并扩展</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 用于显示下载状态的带滚动条的文本框，默认禁用编辑</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span> <span class="o">=</span> <span class="n">scrolledtext</span><span class="o">.</span><span class="n">ScrolledText</span><span class="p">(</span><span class="n">frame_status</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s2">&#34;disabled&#34;</span><span class="p">,</span> <span class="n">wrap</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">WORD</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;both&#34;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 添加进度条显示，用于展示下载进度</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">progress_var</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">DoubleVar</span><span class="p">()</span>  <span class="c1"># 进度条变量，0-100</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span> <span class="o">=</span> <span class="n">ttk</span><span class="o">.</span><span class="n">Progressbar</span><span class="p">(</span><span class="n">frame_status</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">progress_var</span><span class="p">,</span> <span class="n">maximum</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">progress_bar</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s2">&#34;x&#34;</span><span class="p">,</span> <span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 创建默认保存目录，如果不存在则创建</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_path</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;在状态区域显示信息&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&#34;normal&#34;</span><span class="p">)</span>  <span class="c1"># 临时启用编辑状态</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">,</span> <span class="n">message</span> <span class="o">+</span> <span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># 添加信息到末尾</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span><span class="o">.</span><span class="n">see</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span>  <span class="c1"># 滚动到最底部</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">status_text</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="s2">&#34;disabled&#34;</span><span class="p">)</span>  <span class="c1"># 禁用编辑状态</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">choose_save_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;选择保存路径的对话框&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">path</span> <span class="o">=</span> <span class="n">filedialog</span><span class="o">.</span><span class="n">askdirectory</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;选择保存文件夹&#34;</span><span class="p">)</span>  <span class="c1"># 打开文件夹选择对话框</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>  <span class="c1"># 如果用户选择了路径</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">save_path</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>  <span class="c1"># 更新保存路径变量</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_bvid_from_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;从URL中提取BV号&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>  <span class="c1"># 解析URL</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="s2">&#34;bilibili.com&#34;</span> <span class="ow">in</span> <span class="n">parsed</span><span class="o">.</span><span class="n">netloc</span><span class="p">:</span>  <span class="c1"># 检查是否为B站链接</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 从路径中匹配BV号（格式为BV+数字字母组合）</span>
+</span></span><span class="line"><span class="cl">            <span class="k">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;BV[0-9A-Za-z]+&#34;</span><span class="p">,</span> <span class="n">parsed</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="k">match</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="k">match</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>  <span class="c1"># 返回匹配到的BV号</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 从查询参数中提取BV号</span>
+</span></span><span class="line"><span class="cl">            <span class="n">query</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="o">.</span><span class="n">query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="s2">&#34;bvid&#34;</span> <span class="ow">in</span> <span class="n">query</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">query</span><span class="p">[</span><span class="s2">&#34;bvid&#34;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># 返回查询参数中的BV号</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># 不是有效B站链接，返回None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">download_video</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bvid</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;根据BV号下载视频&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取视频基本信息的API</span>
+</span></span><span class="line"><span class="cl">            <span class="n">info_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;https://api.bilibili.com/x/web-interface/view?bvid=</span><span class="si">{</span><span class="n">bvid</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">info_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>  <span class="c1"># 发送请求</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># 检查请求是否成功</span>
+</span></span><span class="line"><span class="cl">            <span class="n">info</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>  <span class="c1"># 解析JSON响应</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">info</span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># API返回错误码</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取视频信息失败：</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取视频标题，并替换不允许的文件名字符</span>
+</span></span><span class="line"><span class="cl">            <span class="n">title</span> <span class="o">=</span> <span class="n">info</span><span class="p">[</span><span class="s2">&#34;data&#34;</span><span class="p">][</span><span class="s2">&#34;title&#34;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;/&#34;</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\\</span><span class="s2">&#34;</span><span class="p">,</span> <span class="s2">&#34;-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;视频标题：</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 创建视频保存目录（以视频标题命名）</span>
+</span></span><span class="line"><span class="cl">            <span class="n">video_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_path</span><span class="o">.</span><span class="n">get</span><span class="p">(),</span> <span class="n">title</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">video_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 不存在则创建</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取视频下载链接的API（需要cid参数）</span>
+</span></span><span class="line"><span class="cl">            <span class="n">download_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;https://api.bilibili.com/x/player/playurl?bvid=</span><span class="si">{</span><span class="n">bvid</span><span class="si">}</span><span class="s2">&amp;cid=</span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;cid&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&amp;fnval=16&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">download_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">res</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">download_info</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">download_info</span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># API返回错误码</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取下载链接失败：</span><span class="si">{</span><span class="n">download_info</span><span class="p">[</span><span class="s1">&#39;message&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 获取视频流和音频流列表（B站视频和音频通常分离）</span>
+</span></span><span class="line"><span class="cl">            <span class="n">video_streams</span> <span class="o">=</span> <span class="n">download_info</span><span class="p">[</span><span class="s2">&#34;data&#34;</span><span class="p">][</span><span class="s2">&#34;dash&#34;</span><span class="p">][</span><span class="s2">&#34;video&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">audio_streams</span> <span class="o">=</span> <span class="n">download_info</span><span class="p">[</span><span class="s2">&#34;data&#34;</span><span class="p">][</span><span class="s2">&#34;dash&#34;</span><span class="p">][</span><span class="s2">&#34;audio&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="n">video_streams</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">audio_streams</span><span class="p">:</span>  <span class="c1"># 检查是否有可用流</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;未找到可用的音视频流&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 选择带宽最高的流（通常质量最好）</span>
+</span></span><span class="line"><span class="cl">            <span class="n">video_url</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">video_streams</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;bandwidth&#34;</span><span class="p">])[</span><span class="s2">&#34;base_url&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            <span class="n">audio_url</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">audio_streams</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&#34;bandwidth&#34;</span><span class="p">])[</span><span class="s2">&#34;base_url&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 下载视频流</span>
+</span></span><span class="line"><span class="cl">            <span class="n">video_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">video_dir</span><span class="p">,</span> <span class="s2">&#34;video.mp4&#34;</span><span class="p">)</span>  <span class="c1"># 临时视频文件路径</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;开始下载视频流...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_stream</span><span class="p">(</span><span class="n">video_url</span><span class="p">,</span> <span class="n">video_path</span><span class="p">,</span> <span class="s2">&#34;视频&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># 下载失败则返回</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 下载音频流</span>
+</span></span><span class="line"><span class="cl">            <span class="n">audio_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">video_dir</span><span class="p">,</span> <span class="s2">&#34;audio.mp4&#34;</span><span class="p">)</span>  <span class="c1"># 临时音频文件路径</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;开始下载音频流...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_stream</span><span class="p">(</span><span class="n">audio_url</span><span class="p">,</span> <span class="n">audio_path</span><span class="p">,</span> <span class="s2">&#34;音频&#34;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># 下载失败则返回</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 使用moviepy库合并音视频</span>
+</span></span><span class="line"><span class="cl">            <span class="n">output_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">video_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">.mp4&#34;</span><span class="p">)</span>  <span class="c1"># 最终输出文件路径</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;开始合并音视频...&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 加载视频和音频文件</span>
+</span></span><span class="line"><span class="cl">                <span class="n">video_clip</span> <span class="o">=</span> <span class="n">VideoFileClip</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">audio_clip</span> <span class="o">=</span> <span class="n">AudioFileClip</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1"># 将音频设置到视频中</span>
+</span></span><span class="line"><span class="cl">                <span class="n">video_clip</span> <span class="o">=</span> <span class="n">video_clip</span><span class="o">.</span><span class="n">set_audio</span><span class="p">(</span><span class="n">audio_clip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1"># 保存合并后的视频</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># 使用libx264编码视频，aac编码音频</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># preset=&#34;ultrafast&#34;加快处理速度，crf=23平衡质量和大小</span>
+</span></span><span class="line"><span class="cl">                <span class="n">video_clip</span><span class="o">.</span><span class="n">write_videofile</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">output_path</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">codec</span><span class="o">=</span><span class="s2">&#34;libx264&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">audio_codec</span><span class="o">=</span><span class="s2">&#34;aac&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">preset</span><span class="o">=</span><span class="s2">&#34;ultrafast&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">threads</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># 使用4个线程加速处理</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># 不输出详细日志</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">logger</span><span class="o">=</span><span class="kc">None</span>  <span class="c1"># 不使用日志记录器</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1"># 关闭clip对象释放资源</span>
+</span></span><span class="line"><span class="cl">                <span class="n">video_clip</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="n">audio_clip</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;视频已成功保存至：</span><span class="si">{</span><span class="n">output_path</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;合并失败：</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 清理临时文件（视频流和音频流）</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">video_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;下载出错：</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">download_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">save_path</span><span class="p">,</span> <span class="n">stream_type</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;下载视频流或音频流&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;Range&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;bytes=0-&#34;</span>  <span class="c1"># 请求完整文件</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="c1"># 流式下载（适合大文件）</span>
+</span></span><span class="line"><span class="cl">            <span class="k">with</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">res</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">res</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># 检查请求是否成功</span>
+</span></span><span class="line"><span class="cl">                <span class="n">total_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;content-length&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>  <span class="c1"># 获取文件总大小</span>
+</span></span><span class="line"><span class="cl">                <span class="n">downloaded_size</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 已下载大小</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">save_path</span><span class="p">,</span> <span class="s2">&#34;wb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># 写入文件</span>
+</span></span><span class="line"><span class="cl">                    <span class="c1"># 分块读取并写入（每块1MB）</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                        <span class="k">if</span> <span class="n">chunk</span><span class="p">:</span>  <span class="c1"># 确保块不为空</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="n">downloaded_size</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            
+</span></span><span class="line"><span class="cl">                            <span class="c1"># 更新进度条和日志</span>
+</span></span><span class="line"><span class="cl">                            <span class="k">if</span> <span class="n">total_size</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                                <span class="n">progress</span> <span class="o">=</span> <span class="p">(</span><span class="n">downloaded_size</span> <span class="o">/</span> <span class="n">total_size</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># 计算进度百分比</span>
+</span></span><span class="line"><span class="cl">                                <span class="bp">self</span><span class="o">.</span><span class="n">progress_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">progress</span><span class="p">)</span>  <span class="c1"># 更新进度条</span>
+</span></span><span class="line"><span class="cl">                                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">stream_type</span><span class="si">}</span><span class="s2">下载进度：</span><span class="si">{</span><span class="n">progress</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                                <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">update_idletasks</span><span class="p">()</span>  <span class="c1"># 刷新界面</span>
+</span></span><span class="line"><span class="cl">                
+</span></span><span class="line"><span class="cl">                <span class="c1"># 下载完成重置进度条</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">progress_var</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">stream_type</span><span class="si">}</span><span class="s2">流下载失败：</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 如果文件已创建则删除</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">save_path</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">save_path</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">start_download</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;&#34;&#34;启动下载线程，避免界面卡死&#34;&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 获取用户输入的所有链接（按行分割）</span>
+</span></span><span class="line"><span class="cl">        <span class="n">urls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_text</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tk</span><span class="o">.</span><span class="n">END</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 过滤空行</span>
+</span></span><span class="line"><span class="cl">        <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">u</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">urls</span> <span class="k">if</span> <span class="n">u</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">urls</span><span class="p">:</span>  <span class="c1"># 没有输入链接</span>
+</span></span><span class="line"><span class="cl">            <span class="n">messagebox</span><span class="o">.</span><span class="n">showwarning</span><span class="p">(</span><span class="s2">&#34;提示&#34;</span><span class="p">,</span> <span class="s2">&#34;请输入视频链接&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 提取所有有效的BV号</span>
+</span></span><span class="line"><span class="cl">        <span class="n">bvids</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">bvid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bvid_from_url</span><span class="p">(</span><span class="n">url</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">bvid</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">bvids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bvid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;无效链接：</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="ow">not</span> <span class="n">bvids</span><span class="p">:</span>  <span class="c1"># 没有有效的BV号</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 定义下载线程的执行函数</span>
+</span></span><span class="line"><span class="cl">        <span class="k">def</span> <span class="nf">thread_func</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;======开始下载任务======&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1"># 遍历所有BV号，逐个下载</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">bvid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bvids</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">处理第</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">bvids</span><span class="p">)</span><span class="si">}</span><span class="s2">个视频:BV号=</span><span class="si">{</span><span class="n">bvid</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="bp">self</span><span class="o">.</span><span class="n">download_video</span><span class="p">(</span><span class="n">bvid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="bp">self</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">======所有任务完成======&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        
+</span></span><span class="line"><span class="cl">        <span class="c1"># 启动新线程执行下载任务（守护线程，主程序退出时自动结束）</span>
+</span></span><span class="line"><span class="cl">        <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">thread_func</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 创建主窗口并启动应用</span>
+</span></span><span class="line"><span class="cl">    <span class="n">root</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">app</span> <span class="o">=</span> <span class="n">BiliVideoDownloader</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>  <span class="c1"># 进入事件循环</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="安装依赖bat">安装依赖.bat
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span><span class="lnt">95
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
+</span></span><span class="line"><span class="cl">chcp 65001 <span class="p">&gt;</span> nul
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> ==============================================
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>           B站视频下载器 - 环境配置脚本
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> ==============================================
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 本脚本将：
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1. 自动配置pip国内镜像源（清华源）
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2. 一键安装所有必需的依赖库
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 注意：如果提示<span class="s2">&#34;pip不是内部或外部命令&#34;</span>，请先配置Python环境变量
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 按任意键开始配置...
+</span></span><span class="line"><span class="cl"><span class="k">pause</span> <span class="p">&gt;</span> nul
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: ===================== 第一步：配置pip镜像源 =====================</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 【1/2】正在配置pip国内镜像源（清华源）...
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="s2">&#34;pip_config_dir=</span><span class="nv">%APPDATA%</span><span class="s2">\pip&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">set</span> <span class="s2">&#34;pip_config_file=</span><span class="nv">%pip_config_dir%</span><span class="s2">\pip.ini&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 创建pip配置目录（如果不存在）</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="k">not</span> <span class="k">exist</span> <span class="s2">&#34;</span><span class="nv">%pip_config_dir%</span><span class="s2">&#34;</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">mkdir</span> <span class="s2">&#34;</span><span class="nv">%pip_config_dir%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ✅ 创建pip配置目录成功
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 写入清华镜像源配置</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> [global] <span class="p">&gt;</span> <span class="s2">&#34;</span><span class="nv">%pip_config_file%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> index-url = https://pypi.tuna.tsinghua.edu.cn/simple <span class="p">&gt;&gt;</span> <span class="s2">&#34;</span><span class="nv">%pip_config_file%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> trusted-host = pypi.tuna.tsinghua.edu.cn <span class="p">&gt;&gt;</span> <span class="s2">&#34;</span><span class="nv">%pip_config_file%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> timeout = 120 <span class="p">&gt;&gt;</span> <span class="s2">&#34;</span><span class="nv">%pip_config_file%</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="k">exist</span> <span class="s2">&#34;</span><span class="nv">%pip_config_file%</span><span class="s2">&#34;</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ✅ pip镜像源配置成功（已设置为清华源）
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    配置文件路径：<span class="nv">%pip_config_file%</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ❌ pip镜像源配置失败，请手动创建pip.ini文件
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    手动配置参考：
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    1. 新建目录：<span class="nv">%APPDATA%</span>\pip
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    2. 新建文件pip.ini，内容：
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>       [global]
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>       index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>       trusted-host = pypi.tuna.tsinghua.edu.cn
+</span></span><span class="line"><span class="cl">    <span class="k">pause</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /b 1
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: ===================== 第二步：安装依赖库 =====================</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 【2/2】正在安装所需依赖库...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 安装requests库（网络请求）</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1. 安装requests库...
+</span></span><span class="line"><span class="cl">pip install requests
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%errorlevel%</span> <span class="ow">equ</span> 0 <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ✅ requests安装成功
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ❌ requests安装失败，请手动执行：pip install requests
+</span></span><span class="line"><span class="cl">    <span class="k">pause</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /b 1
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 安装moviepy库（音视频合并）</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2. 安装moviepy库...
+</span></span><span class="line"><span class="cl">pip install moviepy
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%errorlevel%</span> <span class="ow">equ</span> 0 <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ✅ moviepy安装成功
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ❌ moviepy安装失败，请手动执行：pip install moviepy
+</span></span><span class="line"><span class="cl">    <span class="k">pause</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /b 1
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 安装ffmpeg-python（moviepy依赖）</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 3. 安装ffmpeg-python库...
+</span></span><span class="line"><span class="cl">pip install ffmpeg-python
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="nv">%errorlevel%</span> <span class="ow">equ</span> 0 <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ✅ ffmpeg-python安装成功
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="k">else</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span>    ❌ ffmpeg-python安装失败，请手动执行：pip install ffmpeg-python
+</span></span><span class="line"><span class="cl">    <span class="k">pause</span>
+</span></span><span class="line"><span class="cl">    <span class="k">exit</span> /b 1
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">:</span><span class="c1">: 提示tkinter（Python自带，无需安装）</span>
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 4. 检查tkinter（Python标准库，无需额外安装）
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>    ✅ tkinter无需安装（若缺失请重新安装Python并勾选tcl/tk组件）
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>.
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> ==============================================
+</span></span><span class="line"><span class="cl"><span class="k">echo</span>           环境配置完成！
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> ==============================================
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 1. pip镜像源已永久配置为清华源（后续安装库默认使用）
+</span></span><span class="line"><span class="cl"><span class="k">echo</span> 2. 所有依赖库安装完成，可直接运行B站视频下载器
+</span></span><span class="line"><span class="cl"><span class="k">pause</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 sure-block
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.31.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

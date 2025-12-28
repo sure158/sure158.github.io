@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="GreenWall 仓库深度解析 GreenWall（仓库地址：https://github.com/zmrlft/GreenWall ）是一个专注于自定义 GitHub 贡献图表的工具类项目，通过生成包含特定提交记录的 Git 仓库，让用户能在 GitHub 个人主页的贡献热力图上绘制自定义图案（如文字、图形等），满足个性化展示需求。以下从项目核心信息、功能细节、使用流程、技术架构等维度展开详细介绍。\n">
+<title>刷绿墙教程</title>
+
+<link rel='canonical' href='https://sure158.github.io/p/%E5%88%B7%E7%BB%BF%E5%A2%99%E6%95%99%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.6a692fd055deae459f2a9767f57f3855ba80cafd5041317f24f7360f6ca47cdf.css"><meta property='og:title' content="刷绿墙教程">
+<meta property='og:description' content="GreenWall 仓库深度解析 GreenWall（仓库地址：https://github.com/zmrlft/GreenWall ）是一个专注于自定义 GitHub 贡献图表的工具类项目，通过生成包含特定提交记录的 Git 仓库，让用户能在 GitHub 个人主页的贡献热力图上绘制自定义图案（如文字、图形等），满足个性化展示需求。以下从项目核心信息、功能细节、使用流程、技术架构等维度展开详细介绍。\n">
+<meta property='og:url' content='https://sure158.github.io/p/%E5%88%B7%E7%BB%BF%E5%A2%99%E6%95%99%E7%A8%8B/'>
+<meta property='og:site_name' content='sure-block'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2025-10-26T08:47:33&#43;08:00'/><meta property='article:modified_time' content='2025-10-26T08:47:33&#43;08:00'/>
+<meta name="twitter:title" content="刷绿墙教程">
+<meta name="twitter:description" content="GreenWall 仓库深度解析 GreenWall（仓库地址：https://github.com/zmrlft/GreenWall ）是一个专注于自定义 GitHub 贡献图表的工具类项目，通过生成包含特定提交记录的 Git 仓库，让用户能在 GitHub 个人主页的贡献热力图上绘制自定义图案（如文字、图形等），满足个性化展示需求。以下从项目核心信息、功能细节、使用流程、技术架构等维度展开详细介绍。\n">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu_2ee43e5217ab566c.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">sure-block</a></h1>
+            <h2 class="site-description">sure-block的个人博客</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://github.com/CaiJimmy/hugo-theme-stack'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/links/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>Links</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#一项目核心信息">一、项目核心信息</a></li>
+    <li><a href="#二核心功能与使用细节">二、核心功能与使用细节</a>
+      <ol>
+        <li><a href="#1-核心定制能力">1. 核心定制能力</a></li>
+        <li><a href="#2-仓库生成与推送流程">2. 仓库生成与推送流程</a>
+          <ol>
+            <li><a href="#1前置准备">（1）前置准备</a></li>
+            <li><a href="#2生成与推送步骤">（2）生成与推送步骤</a></li>
+            <li><a href="#3关键注意事项">（3）关键注意事项</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#三技术架构与文件结构">三、技术架构与文件结构</a>
+      <ol>
+        <li><a href="#1-技术栈">1. 技术栈</a></li>
+        <li><a href="#2-核心文件文件夹说明">2. 核心文件/文件夹说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#四未来规划与使用风险">四、未来规划与使用风险</a>
+      <ol>
+        <li><a href="#1-未来功能方向">1. 未来功能方向</a></li>
+        <li><a href="#2-使用风险与合规提示">2. 使用风险与合规提示</a></li>
+      </ol>
+    </li>
+    <li><a href="#五总结">五、总结</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%88%B7%E7%BB%BF%E5%A2%99%E6%95%99%E7%A8%8B/">刷绿墙教程</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 26, 2025</time>
+            </div>
+        
+
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="greenwall-仓库深度解析">GreenWall 仓库深度解析
+</h1><p>GreenWall（仓库地址：https://github.com/zmrlft/GreenWall ）是一个专注于<strong>自定义 GitHub 贡献图表</strong>的工具类项目，通过生成包含特定提交记录的 Git 仓库，让用户能在 GitHub 个人主页的贡献热力图上绘制自定义图案（如文字、图形等），满足个性化展示需求。以下从项目核心信息、功能细节、使用流程、技术架构等维度展开详细介绍。</p>
+<h2 id="一项目核心信息">一、项目核心信息
+</h2><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>类别</th>
+          <th>详情</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>项目定位</td>
+          <td>GitHub 贡献图表自定义工具，支持生成含特定提交记录的仓库，实现图案绘制</td>
+      </tr>
+      <tr>
+          <td>最新版本</td>
+          <td>v0.2.0（2025年10月24日发布，为当前最新版本）</td>
+      </tr>
+      <tr>
+          <td>开发维护</td>
+          <td>由开发者 zmrlft 维护，仓库星标数（Star）曾达 60+（参考 Star History 数据）</td>
+      </tr>
+      <tr>
+          <td>文档支持</td>
+          <td>提供中英文双语言 README（<code>README.md</code> 英文版、<code>README_zh.md</code> 中文版），降低使用门槛</td>
+      </tr>
+      <tr>
+          <td>系统兼容性</td>
+          <td>区分 Windows 与非 Windows 系统（含 <code>cmd_windows.go</code>、<code>cmd_nonwindows.go</code> 适配文件）</td>
+      </tr>
+  </tbody>
+</table></div>
+<h2 id="二核心功能与使用细节">二、核心功能与使用细节
+</h2><p>GreenWall 的核心价值是“通过控制 Git 提交记录，自定义贡献图表”，功能设计围绕“便捷操作”和“灵活定制”展开，具体细节如下：</p>
+<h3 id="1-核心定制能力">1. 核心定制能力
+</h3><p>用户可通过工具界面（或配置）自定义关键参数，精准控制贡献图表的呈现效果：</p>
+<ul>
+<li><strong>基础身份与仓库配置</strong>：需填写 GitHub 用户名（用于关联贡献归属）、GitHub 邮箱（匹配 Git 提交身份）、自定义仓库名称（如示例中的“cat”），确保生成的仓库能正确关联到个人账号。</li>
+<li><strong>时间范围控制</strong>：支持选择目标年份（如示例中的 2024 年、2025 年），仅在选定年份内生成提交记录，避免影响其他年份的贡献数据。</li>
+<li><strong>绘制模式切换</strong>：提供“画笔（Pen）”和“橡皮擦（Eraser）”两种模式——“画笔”用于在指定日期添加贡献（对应热力图中“绿色方块”的深浅，贡献次数越多颜色越深），“橡皮擦”用于删除已添加的贡献记录，操作逻辑类似画图工具，降低使用难度。</li>
+<li><strong>数据导入/导出</strong>：支持画布数据（即已设计好的贡献图案）的导入与导出（从 <code>frontend</code> 文件夹的提交记录“feat: Implement right-click mode toggle and canvas data import/export”可知），方便用户保存设计成果、跨设备复用或分享图案配置。</li>
+</ul>
+<h3 id="2-仓库生成与推送流程">2. 仓库生成与推送流程
+</h3><p>工具的核心逻辑是“生成本地 Git 仓库→推送至 GitHub 远程→触发贡献统计”，流程细节及注意事项如下：</p>
+<h4 id="1前置准备">（1）前置准备
+</h4><ul>
+<li>必须安装 Git 环境：因工具依赖 Git 命令生成提交记录、关联远程仓库，需确保本地已配置 Git（并完成 <code>git config --global user.name</code> 和 <code>git config --global user.email</code> 配置，与填写的 GitHub 用户名、邮箱一致）。</li>
+<li>下载工具应用：项目未明确说明应用格式（如 Windows 下的 <code>.exe</code>、macOS 下的 <code>.dmg</code> 等），但强调“下载后打开即可使用”，生成仓库时需耐心等待（因需批量创建提交记录，耗时视图案复杂度而定）。</li>
+</ul>
+<h4 id="2生成与推送步骤">（2）生成与推送步骤
+</h4><ol>
+<li><strong>生成本地仓库</strong>：填写参数后点击“Generate Repo”，工具会在本地生成一个包含批量 Git 提交的仓库文件夹（提交记录的日期、次数与用户设计的图案对应）。</li>
+<li><strong>创建远程空仓库</strong>：登录 GitHub 账号，新建一个<strong>完全空白</strong>的远程仓库——必须取消勾选“Add a README file”“Add .gitignore”“Choose a license”，避免远程仓库与本地仓库存在冲突（导致推送失败）。</li>
+<li><strong>执行推送命令</strong>：进入本地生成的仓库文件夹，通过终端执行以下命令，将本地仓库关联并推送到远程：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 关联远程仓库（替换 &lt;remote-repo-url&gt; 为 GitHub 远程仓库地址，如 https://github.com/your-username/your-repo-name.git）</span>
+</span></span><span class="line"><span class="cl">git remote add origin &lt;remote-repo-url&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 将默认分支命名为 main（符合 GitHub 分支命名规范）</span>
+</span></span><span class="line"><span class="cl">git branch -M main
+</span></span><span class="line"><span class="cl"><span class="c1"># 推送本地分支到远程，并设置 upstream 关联</span>
+</span></span><span class="line"><span class="cl">git push -u origin main
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="3关键注意事项">（3）关键注意事项
+</h4><ul>
+<li><strong>贡献显示延迟</strong>：推送后 GitHub 不会实时更新贡献图表，需等待 5 分钟至 2 天（官方统计周期），期间无需重复推送。</li>
+<li><strong>私有仓库设置</strong>：若不想让他人查看仓库内容，可将远程仓库设为“Private”，同时需在 GitHub 个人设置中开启“Private contributions”（路径：GitHub 个人主页 → Settings → Contributions &amp; activity → 勾选“Include private contributions on my profile”），确保私有仓库的贡献能被统计到图表中。</li>
+</ul>
+<h2 id="三技术架构与文件结构">三、技术架构与文件结构
+</h2><p>项目采用“前后端分离+跨平台框架”设计，技术栈清晰，文件结构规整，便于维护和二次开发。</p>
+<h3 id="1-技术栈">1. 技术栈
+</h3><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>层面</th>
+          <th>技术选型</th>
+          <th>作用说明</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>后端</td>
+          <td>Go 语言 + Wails 框架（配置见 <code>wails.json</code>）</td>
+          <td>Wails 是 Go 生态的跨平台桌面应用框架，可将 Go 后端与 Web 前端结合，生成原生桌面应用，支持 Windows/macOS/Linux。</td>
+      </tr>
+      <tr>
+          <td>前端</td>
+          <td>TypeScript + Tailwind CSS + Vite（存于 <code>frontend</code> 文件夹）</td>
+          <td>负责绘制界面（如贡献图表画布、参数输入表单），处理用户交互（如模式切换、数据导入导出）。</td>
+      </tr>
+      <tr>
+          <td>依赖管理</td>
+          <td>Go Modules（<code>go.mod</code>/<code>go.sum</code>）、npm（前端依赖，推测存于 <code>frontend/package.json</code>）</td>
+          <td>分别管理后端 Go 依赖和前端 JavaScript 依赖，确保环境一致性。</td>
+      </tr>
+      <tr>
+          <td>系统适配</td>
+          <td>差异化脚本（<code>cmd_windows.go</code>/<code>cmd_nonwindows.go</code>）</td>
+          <td>处理不同系统的特殊逻辑（如自动打开仓库文件夹，Windows 用 <code>cmd</code> 命令，非 Windows 用 <code>xdg-open</code> 等）。</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="2-核心文件文件夹说明">2. 核心文件/文件夹说明
+</h3><p>从仓库文件列表可梳理关键模块的承载文件，理解项目分工：</p>
+<ul>
+<li><strong><code>build/</code> 文件夹</strong>：存储构建相关配置，提交记录“feat: implement repository generation feature”表明该文件夹与“仓库生成功能”的构建逻辑相关。</li>
+<li><strong><code>docs/images/</code> 文件夹</strong>：存放文档图片（如 README 中的操作截图、贡献图表示例），提交记录“docs: update readme”用于更新文档配图，提升可读性。</li>
+<li><strong><code>frontend/</code> 文件夹</strong>：前端代码根目录，包含界面组件、交互逻辑、样式文件等，是用户可视化操作的核心。</li>
+<li><strong>Go 核心代码文件</strong>：
+<ul>
+<li><code>app.go</code>：后端核心逻辑入口，处理前端请求（如“生成仓库”“导入导出数据”），关联 Git 命令调用。</li>
+<li><code>main.go</code>：应用入口文件，初始化 Wails 框架，启动前后端服务，最新提交（2025年10月22日）完善了仓库生成功能。</li>
+<li><code>open_directory.go</code>：实现“自动打开仓库文件夹”功能（2025年10月23日提交），提升用户操作便捷性。</li>
+</ul>
+</li>
+<li><strong>配置文件</strong>：
+<ul>
+<li><code>.gitignore</code>：指定 Git 忽略的文件（如编译产物、日志文件），初始化时基于 Wails 框架配置。</li>
+<li><code>wails.json</code>：Wails 框架配置文件，定义应用名称、版本、前后端路径等，确保前后端正确集成。</li>
+</ul>
+</li>
+</ul>
+<h2 id="四未来规划与使用风险">四、未来规划与使用风险
+</h2><h3 id="1-未来功能方向">1. 未来功能方向
+</h3><p>根据 README 中的“Future features”说明，项目计划新增**“自定义语言仓库生成”功能**：</p>
+<ul>
+<li>现有功能生成的仓库默认无特定编程语言标识（或仅含基础文件），未来将支持生成指定语言的仓库（如 Java、Python、JavaScript 等）。</li>
+<li>实现逻辑：工具会自动生成对应语言的基础文件（如 Java 的 <code>.java</code> 类、Python 的 <code>.py</code> 脚本），使 GitHub 语言统计（仓库主页右侧“Languages”区域）能识别并显示该语言，让仓库更“真实”，避免仅显示“无语言标识”的情况。</li>
+</ul>
+<h3 id="2-使用风险与合规提示">2. 使用风险与合规提示
+</h3><p>项目 README 虽未明确提及，但需注意 GitHub 贡献机制的合规性：</p>
+<ul>
+<li><strong>禁止滥用场景</strong>：工具初衷是“个性化展示”，但不可用于伪造开发经验（如为求职、开源背书而虚构大量贡献），若被 GitHub 判定为“恶意刷贡献”，可能面临账号限制（如贡献记录清零、仓库封禁）。</li>
+<li><strong>责任归属</strong>：用户需自行对使用工具生成的仓库内容和贡献记录负责，确保符合 GitHub 社区规范（https://docs.github.com/en/site-policy ）。</li>
+</ul>
+<h2 id="五总结">五、总结
+</h2><p>GreenWall 是一款“小而美”的 GitHub 个性化工具，通过简洁的操作流程和跨平台设计，降低了“自定义贡献图表”的技术门槛，适合希望让 GitHub 个人主页更具特色的开发者。其技术架构（Go + Wails + 前端框架）兼顾了性能与易用性，未来“自定义语言仓库”的规划也进一步提升了工具的实用性。使用时需注意合规性，避免滥用功能，确保符合 GitHub 社区规范。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2024 - 
+        
+        2025 sure-block
+    </section>
+    
+    <section class="powerby">
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.31.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.1e9a3bafd846ced4c345d084b355fb8c7bae75701c338f8a1f8a82c780137826.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
